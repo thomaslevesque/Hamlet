@@ -144,6 +144,13 @@ namespace Mayby.Tests
         }
 
         [Fact]
+        public void GetHashCode_returns_zero_for_some_null()
+        {
+            var option = Option.Some(default(string));
+            option.GetHashCode().Should().Be(0);
+        }
+
+        [Fact]
         public void GetHashCode_returns_value_hashcode_for_some()
         {
             var option = Option.Some(42);
