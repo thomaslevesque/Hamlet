@@ -4,6 +4,7 @@ obj/
 .vscode/
 *.user
 
+TestResults/
 artifacts/
 
 _ReSharper.Caches/
