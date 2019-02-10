@@ -16,7 +16,7 @@ namespace Mayby
 
         public bool HasValue { get; }
 
-        public T GetValueOrDefault(T defaultValue = default(T)) => HasValue ? _value : defaultValue;
+        public T GetValueOrDefault(T defaultValue = default) => HasValue ? _value : defaultValue;
 
         public bool TryGetValue(out T value)
         {
@@ -26,7 +26,7 @@ namespace Mayby
 
         public static implicit operator Option<T>(T value) => new Option<T>(value);
 
-        public static implicit operator Option<T>(NoneOption value) => default(Option<T>);
+        public static implicit operator Option<T>(NoneOption value) => default;
 
         public bool Equals(Option<T> other)
         {
@@ -66,7 +66,7 @@ namespace Mayby
             }
         }
 
-        public Option<T> Where(Func<T, bool> predicate)
+        public Option<T> Filter(Func<T, bool> predicate)
         {
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
@@ -76,7 +76,7 @@ namespace Mayby
             return Option.None<T>();
         }
 
-        public Option<U> Select<U>(Func<T, U> projection)
+        public Option<U> Map<U>(Func<T, U> projection)
         {
             if (projection == null)
                 throw new ArgumentNullException(nameof(projection));
@@ -87,7 +87,7 @@ namespace Mayby
             return Option.None<U>();
         }
 
-        public Option<U> SelectMany<U>(Func<T, Option<U>> projection)
+        public Option<U> Bind<U>(Func<T, Option<U>> projection)
         {
             if (projection == null)
                 throw new ArgumentNullException(nameof(projection));
@@ -96,17 +96,6 @@ namespace Mayby
                 return projection(_value);
 
             return Option.None<U>();
-        }
-
-        public Option<V> SelectMany<U, V>(Func<T, Option<U>> projection, Func<T, U, V> resultProjection)
-        {
-            if (projection == null)
-                throw new ArgumentNullException(nameof(projection));
-
-            if (resultProjection == null)
-                throw new ArgumentNullException(nameof(resultProjection));
-
-            return this.SelectMany(x => projection(x).Select(u => resultProjection(x, u)));
         }
     }
 }
