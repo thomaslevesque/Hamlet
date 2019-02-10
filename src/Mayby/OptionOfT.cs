@@ -76,24 +76,24 @@ namespace Mayby
             return Option.None<T>();
         }
 
-        public Option<U> Map<U>(Func<T, U> projection)
+        public Option<U> Map<U>(Func<T, U> mapping)
         {
-            if (projection == null)
-                throw new ArgumentNullException(nameof(projection));
+            if (mapping == null)
+                throw new ArgumentNullException(nameof(mapping));
 
             if (HasValue)
-                return Option.Some(projection(_value));
+                return Option.Some(mapping(_value));
 
             return Option.None<U>();
         }
 
-        public Option<U> Bind<U>(Func<T, Option<U>> projection)
+        public Option<U> Bind<U>(Func<T, Option<U>> binder)
         {
-            if (projection == null)
-                throw new ArgumentNullException(nameof(projection));
+            if (binder == null)
+                throw new ArgumentNullException(nameof(binder));
 
             if (HasValue)
-                return projection(_value);
+                return binder(_value);
 
             return Option.None<U>();
         }

@@ -38,7 +38,7 @@ namespace Mayby.Tests
         public void Select_throws_if_argument_is_null()
         {
             var option = Option.Some(42);
-            AssertThrowsWhenArgumentNull(() => option.Select(x => "hello " + x), "projection");
+            AssertThrowsWhenArgumentNull(() => option.Select(x => "hello " + x), "selector");
         }
 
         [Fact]
@@ -59,7 +59,7 @@ namespace Mayby.Tests
         public void SelectMany_throws_if_argument_is_null()
         {
             var option = Option.Some(42);
-            AssertThrowsWhenArgumentNull(() => option.SelectMany(x => Option.Some(x + 1)), "projection");
+            AssertThrowsWhenArgumentNull(() => option.SelectMany(x => Option.Some(x + 1)), "selector");
         }
 
         [Fact]
@@ -80,7 +80,7 @@ namespace Mayby.Tests
         public void SelectManyWithResultProjection_throws_if_argument_is_null()
         {
             var option = Option.Some(42);
-            AssertThrowsWhenArgumentNull(() => option.SelectMany(x => Option.Some(123), (x, y) => x + y), "projection", "resultProjection");
+            AssertThrowsWhenArgumentNull(() => option.SelectMany(x => Option.Some(123), (x, y) => x + y), "optionSelector", "resultSelector");
         }
 
         [Fact]

@@ -231,7 +231,7 @@ namespace Mayby.Tests
         public void Map_throws_if_argument_is_null()
         {
             var option = Option.Some(42);
-            AssertThrowsWhenArgumentNull(() => option.Map(x => "hello " + x), "projection");
+            AssertThrowsWhenArgumentNull(() => option.Map(x => "hello " + x), "mapping");
         }
 
         [Fact]
@@ -249,10 +249,10 @@ namespace Mayby.Tests
         }
 
         [Fact]
-        public void MapMany_throws_if_argument_is_null()
+        public void Bind_throws_if_argument_is_null()
         {
             var option = Option.Some(42);
-            AssertThrowsWhenArgumentNull(() => option.Bind(x => Option.Some(x + 1)), "projection");
+            AssertThrowsWhenArgumentNull(() => option.Bind(x => Option.Some(x + 1)), "binder");
         }
 
         [Fact]
