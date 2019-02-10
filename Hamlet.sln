@@ -5,11 +5,11 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FD8B1394-03A1-4246-8958-1DAB54DA1E11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mayby", "src\Mayby\Mayby.csproj", "{766A8C5C-16DD-47E0-9DCF-C2D81A3ED0CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamlet", "src\Hamlet\Hamlet.csproj", "{766A8C5C-16DD-47E0-9DCF-C2D81A3ED0CB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8E937A1B-2D49-4D07-8265-A2E1FD2B9512}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mayby.Tests", "tests\Mayby.Tests\Mayby.Tests.csproj", "{FBBAE04F-5395-449A-AD07-12910EEFEC35}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamlet.Tests", "tests\Hamlet.Tests\Hamlet.Tests.csproj", "{FBBAE04F-5395-449A-AD07-12910EEFEC35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,9 +1,9 @@
 ﻿using System;
 using Xunit;
 using FluentAssertions;
-using static Mayby.Tests.TestHelpers;
+using static Hamlet.Tests.TestHelpers;
 
-namespace Mayby.Tests
+namespace Hamlet.Tests
 {
     public class OptionOfTTests
     {

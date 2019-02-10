@@ -1,4 +1,4 @@
-﻿using Mayby;
+﻿using Hamlet;
 
 namespace System.Linq
 {

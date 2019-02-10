@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using FluentAssertions;
 using Xunit;
 
-namespace Mayby.Tests
+namespace Hamlet.Tests
 {
     internal static class TestHelpers
     {

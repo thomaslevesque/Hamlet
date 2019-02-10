@@ -2,7 +2,7 @@
 using FluentAssertions;
 using FluentAssertions.Execution;
 
-namespace Mayby.Tests
+namespace Hamlet.Tests
 {
     internal class OptionAssertions<T>
     {

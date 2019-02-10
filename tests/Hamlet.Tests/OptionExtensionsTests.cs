@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using Xunit;
-using static Mayby.Tests.TestHelpers;
+using static Hamlet.Tests.TestHelpers;
 
-namespace Mayby.Tests
+namespace Hamlet.Tests
 {
     public class OptionExtensionsTests
     {

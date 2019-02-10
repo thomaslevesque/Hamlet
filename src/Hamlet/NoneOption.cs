@@ -1,4 +1,4 @@
-namespace Mayby
+namespace Hamlet
 {
     public struct NoneOption
     {

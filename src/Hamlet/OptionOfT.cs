@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Mayby
+namespace Hamlet
 {
     public struct Option<T> : IEquatable<Option<T>>
     {
