@@ -9,6 +9,15 @@
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <Authors>Thomas Levesque</Authors>
+    <Title>Hamlet - Option type for .NET</Title>
+    <Description>“To be, or not to be, that is the question”. A simple Option type for .NET</Description>
+    <PackageProjectUrl>https://github.com/thomaslevesque/Hamlet</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReleaseNotes>https://github.com/thomaslevesque/Hamlet/releases</PackageReleaseNotes>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="MinVer" Version="1.0.0-beta.4" PrivateAssets="All" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-18618-05" PrivateAssets="All"/>
