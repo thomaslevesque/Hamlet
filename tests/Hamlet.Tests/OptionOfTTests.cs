@@ -8,17 +8,31 @@ namespace Hamlet.Tests
     public class OptionOfTTests
     {
         [Fact]
-        public void HasValue_returns_true_for_some()
+        public void IsSome_returns_true_for_some()
         {
             var option = Option.Some(42);
-            option.HasValue.Should().BeTrue();
+            option.IsSome.Should().BeTrue();
         }
 
         [Fact]
-        public void HasValue_returns_false_for_none()
+        public void IsNone_returns_false_for_some()
+        {
+            var option = Option.Some(42);
+            option.IsNone.Should().BeFalse();
+        }
+
+        [Fact]
+        public void IsSome_returns_false_for_none()
         {
             var option = Option.None<int>();
-            option.HasValue.Should().BeFalse();
+            option.IsSome.Should().BeFalse();
+        }
+
+        [Fact]
+        public void IsNone_returns_true_for_none()
+        {
+            var option = Option.None<int>();
+            option.IsNone.Should().BeTrue();
         }
 
         [Fact]

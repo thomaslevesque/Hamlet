@@ -8,20 +8,22 @@ namespace Hamlet
         public Option(T value)
         {
             _value = value;
-            HasValue = true;
+            IsSome = true;
         }
 
         private readonly T _value;
-        public T Value => HasValue ? _value : throw new InvalidOperationException("The option doesn't have a value");
+        public T Value => IsSome ? _value : throw new InvalidOperationException("The option doesn't have a value");
 
-        public bool HasValue { get; }
+        public bool IsSome { get; }
 
-        public T GetValueOrDefault(T defaultValue = default) => HasValue ? _value : defaultValue;
+        public bool IsNone => !IsSome;
+
+        public T GetValueOrDefault(T defaultValue = default) => IsSome ? _value : defaultValue;
 
         public bool TryGetValue(out T value)
         {
             value = _value;
-            return HasValue;
+            return IsSome;
         }
 
         public static implicit operator Option<T>(T value) => new Option<T>(value);
@@ -30,13 +32,13 @@ namespace Hamlet
 
         public bool Equals(Option<T> other)
         {
-            if (HasValue)
+            if (IsSome)
             {
-                return other.HasValue && EqualityComparer<T>.Default.Equals(other.Value, Value);
+                return other.IsSome && EqualityComparer<T>.Default.Equals(other.Value, Value);
             }
             else
             {
-                return !other.HasValue;
+                return !other.IsSome;
             }
         }
 
@@ -47,14 +49,14 @@ namespace Hamlet
 
         public override int GetHashCode()
         {
-            return HasValue
+            return IsSome
                 ? _value?.GetHashCode() ?? 0
                 : 0;
         }
 
         public override string ToString()
         {
-            return HasValue
+            return IsSome
                 ? $"Some {ValueAsString(_value)}"
                 : "None";
 
@@ -71,7 +73,7 @@ namespace Hamlet
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
 
-            if (HasValue && predicate(_value))
+            if (IsSome && predicate(_value))
                 return this;
             return Option.None<T>();
         }
@@ -81,7 +83,7 @@ namespace Hamlet
             if (mapping == null)
                 throw new ArgumentNullException(nameof(mapping));
 
-            if (HasValue)
+            if (IsSome)
                 return Option.Some(mapping(_value));
 
             return Option.None<U>();
@@ -92,7 +94,7 @@ namespace Hamlet
             if (binder == null)
                 throw new ArgumentNullException(nameof(binder));
 
-            if (HasValue)
+            if (IsSome)
                 return binder(_value);
 
             return Option.None<U>();

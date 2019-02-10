@@ -9,7 +9,7 @@ namespace Hamlet
         public static T? ToNullable<T>(this Option<T> option)
             where T : struct
         {
-            return option.HasValue
+            return option.IsSome
                 ? option.Value
                 : default(T?);
         }

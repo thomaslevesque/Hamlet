@@ -16,7 +16,7 @@ namespace Hamlet.Tests
         public AndConstraint<OptionAssertions<T>> BeNone(string because = "", params object[] becauseArgs)
         {
             Execute.Assertion
-                .ForCondition(!Subject.HasValue)
+                .ForCondition(!Subject.IsSome)
                 .BecauseOf(because, becauseArgs)
                 .FailWith("Expected {context:option} to be None{reason}, but found {0}.", Subject);
             return new AndConstraint<OptionAssertions<T>>(this);
@@ -25,7 +25,7 @@ namespace Hamlet.Tests
         public AndConstraint<OptionAssertions<T>> BeSome(T value, string because = "", params object[] becauseArgs)
         {
             Execute.Assertion
-                .ForCondition(Subject.HasValue && EqualityComparer<T>.Default.Equals(value, Subject.Value))
+                .ForCondition(Subject.IsSome && EqualityComparer<T>.Default.Equals(value, Subject.Value))
                 .BecauseOf(because, becauseArgs)
                 .FailWith("Expected {context:option} to be {0}{reason}, but found {1}.", Option.Some(value), Subject);
             return new AndConstraint<OptionAssertions<T>>(this);
@@ -34,7 +34,7 @@ namespace Hamlet.Tests
         public AndConstraint<OptionAssertions<T>> BeSome(string because = "", params object[] becauseArgs)
         {
             Execute.Assertion
-                .ForCondition(Subject.HasValue)
+                .ForCondition(Subject.IsSome)
                 .BecauseOf(because, becauseArgs)
                 .FailWith("Expected {context:option} to be Some{reason}, but found {0}.", Subject);
             return new AndConstraint<OptionAssertions<T>>(this);
