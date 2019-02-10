@@ -15,6 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{A29F916B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "build", "tools\build\build.csproj", "{E8030D90-B431-42D2-B245-9F338DF508C6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6ECD0E1F-FB48-470A-B01A-43A5241013B4}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
