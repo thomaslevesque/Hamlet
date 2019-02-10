@@ -4,7 +4,7 @@ using static Hamlet.Tests.TestHelpers;
 
 namespace Hamlet.Tests
 {
-    public class OptionExtensionsTests
+    public class LinqOptionExtensionsTests
     {
         [Fact]
         public void Where_throws_if_argument_is_null()
