@@ -7,6 +7,7 @@
     <AssemblyOriginatorKeyFile>Hamlet.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup>
