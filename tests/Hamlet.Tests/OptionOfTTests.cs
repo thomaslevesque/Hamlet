@@ -282,5 +282,26 @@ namespace Hamlet.Tests
             var option = Option.Some(41).Bind(x => Option.Some(x + 1));
             option.Should().BeSome(42);
         }
+
+        [Fact]
+        public void Match_throws_if_argument_is_null()
+        {
+            var option = Option.Some(42);
+            AssertThrowsWhenArgumentNull(() => option.Match(x => x, () => 0), "some", "none");
+        }
+
+        [Fact]
+        public void Match_evaluates_the_some_projection_for_some()
+        {
+            var option = Option.Some(21);
+            option.Match(some: x => x * 2, none: () => 0).Should().Be(42);
+        }
+
+        [Fact]
+        public void Match_evaluates_the_non_projection_for_none()
+        {
+            var option = Option.None<int>();
+            option.Match(some: x => 0, none: () => 42).Should().Be(42);
+        }
     }
 }

@@ -99,5 +99,15 @@ namespace Hamlet
 
             return Option.None<U>();
         }
+
+        public U Match<U>(Func<T, U> some, Func<U> none)
+        {
+            if (some == null)
+                throw new ArgumentNullException(nameof(some));
+            if (none == null)
+                throw new ArgumentNullException(nameof(none));
+
+            return IsSome ? some(_value) : none();
+        }
     }
 }
