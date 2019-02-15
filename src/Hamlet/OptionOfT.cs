@@ -7,7 +7,7 @@ namespace Hamlet
     /// Represents an optional value.
     /// </summary>
     /// <typeparam name="T">The type of value that can be contained in the option.</typeparam>
-    public struct Option<T> : IEquatable<Option<T>>
+    public struct Option<T> : IEquatable<Option<T>>, IEquatable<T>
     {
         /// <summary>
         /// Creates a new instance of <see cref="Option{T}"/> that contains the specified value.
@@ -97,6 +97,11 @@ namespace Hamlet
             {
                 return !other.IsSome;
             }
+        }
+
+        public bool Equals(T value)
+        {
+            return IsSome && EqualityComparer<T>.Default.Equals(value, Value);
         }
 
         /// <inheritdoc cref="Object" />

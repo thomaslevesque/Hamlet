@@ -151,6 +151,30 @@ namespace Hamlet.Tests
         }
 
         [Fact]
+        public void Equals_with_value_returns_false_for_none()
+        {
+            var a = Option.None<int>();
+            var b = 42;
+            a.Equals(b).Should().BeFalse();
+        }
+
+        [Fact]
+        public void Equals_with_value_returns_false_some_different_value()
+        {
+            var a = Option.Some(42);
+            var b = 123;
+            a.Equals(b).Should().BeFalse();
+        }
+
+        [Fact]
+        public void Equals_with_value_returns_true_for_same_values()
+        {
+            var a = Option.Some(42);
+            var b = 42;
+            a.Equals(b).Should().BeTrue();
+        }
+
+        [Fact]
         public void Equality_operator_returns_false_for_some_and_none()
         {
             var a = Option.Some(42);
