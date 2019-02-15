@@ -71,6 +71,14 @@ namespace Hamlet
 
         public static bool operator !=(Option<T> a, Option<T> b) => !(a == b);
 
+        public static bool operator ==(Option<T> option, T value) => option.Equals(value);
+
+        public static bool operator !=(Option<T> option, T value) => !(option == value);
+
+        public static bool operator ==(T value, Option<T> option) => option == value;
+
+        public static bool operator !=(T value, Option<T> option) => option != value;
+
         /// <summary>
         /// Determines whether the specified <see cref="Option{T}"/> is equal to the current option.
         /// </summary>

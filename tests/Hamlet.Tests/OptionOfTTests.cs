@@ -255,6 +255,102 @@ namespace Hamlet.Tests
         }
 
         [Fact]
+        public void Equality_operator_with_option_and_value_returns_false_for_none()
+        {
+            var option = Option.None<int>();
+            var value = 42;
+            (option == value).Should().BeFalse();
+        }
+
+        [Fact]
+        public void Equality_operator_with_option_and_value_returns_false_for_some_different_value()
+        {
+            var option = Option.Some(42);
+            var value = 123;
+            (option == value).Should().BeFalse();
+        }
+
+        [Fact]
+        public void Equality_operator_with_option_and_value_returns_true_for_same_values()
+        {
+            var option = Option.Some(42);
+            var value = 42;
+            (option == value).Should().BeTrue();
+        }
+
+        [Fact]
+        public void Inequality_operator_with_option_and_value_returns_true_for_none()
+        {
+            var option = Option.None<int>();
+            var value = 42;
+            (option != value).Should().BeTrue();
+        }
+
+        [Fact]
+        public void Inequality_operator_with_option_and_value_returns_true_for_some_different_value()
+        {
+            var option = Option.Some(42);
+            var value = 123;
+            (option != value).Should().BeTrue();
+        }
+
+        [Fact]
+        public void Inequality_operator_with_option_and_value_returns_false_for_same_values()
+        {
+            var option = Option.Some(42);
+            var value = 42;
+            (option != value).Should().BeFalse();
+        }
+
+        [Fact]
+        public void Equality_operator_with_value_and_option_returns_false_for_none()
+        {
+            var option = Option.None<int>();
+            var value = 42;
+            (value == option).Should().BeFalse();
+        }
+
+        [Fact]
+        public void Equality_operator_with_value_and_option_returns_false_for_some_different_value()
+        {
+            var option = Option.Some(42);
+            var value = 123;
+            (value == option).Should().BeFalse();
+        }
+
+        [Fact]
+        public void Equality_operator_with_value_and_option_returns_true_for_same_values()
+        {
+            var option = Option.Some(42);
+            var value = 42;
+            (value == option).Should().BeTrue();
+        }
+
+        [Fact]
+        public void Inequality_operator_with_value_and_option_returns_true_for_none()
+        {
+            var option = Option.None<int>();
+            var value = 42;
+            (value != option).Should().BeTrue();
+        }
+
+        [Fact]
+        public void Inequality_operator_with_value_and_option_returns_true_for_some_different_value()
+        {
+            var option = Option.Some(42);
+            var value = 123;
+            (value != option).Should().BeTrue();
+        }
+
+        [Fact]
+        public void Inequality_operator_with_value_and_option_returns_false_for_same_values()
+        {
+            var option = Option.Some(42);
+            var value = 42;
+            (value != option).Should().BeFalse();
+        }
+
+        [Fact]
         public void GetHashCode_returns_zero_for_none()
         {
             var option = Option.None<int>();
