@@ -151,6 +151,86 @@ namespace Hamlet.Tests
         }
 
         [Fact]
+        public void Equality_operator_returns_false_for_some_and_none()
+        {
+            var a = Option.Some(42);
+            var b = Option.None<int>();
+            (a == b).Should().BeFalse();
+        }
+
+        [Fact]
+        public void Equality_operator_returns_false_for_none_and_some()
+        {
+            var a = Option.None<int>();
+            var b = Option.Some(42);
+            (a == b).Should().BeFalse();
+        }
+
+        [Fact]
+        public void Equality_operator_returns_false_for_different_values()
+        {
+            var a = Option.Some(42);
+            var b = Option.Some(123);
+            (a == b).Should().BeFalse();
+        }
+
+        [Fact]
+        public void Equality_operator_returns_true_for_none_and_none()
+        {
+            var a = Option.None<int>();
+            var b = Option.None<int>();
+            (a == b).Should().BeTrue();
+        }
+
+        [Fact]
+        public void Equality_operator_returns_true_for_same_values()
+        {
+            var a = Option.Some(42);
+            var b = Option.Some(42);
+            (a == b).Should().BeTrue();
+        }
+
+        [Fact]
+        public void Inequality_operator_returns_true_for_some_and_none()
+        {
+            var a = Option.Some(42);
+            var b = Option.None<int>();
+            (a != b).Should().BeTrue();
+        }
+
+        [Fact]
+        public void Inequality_operator_returns_true_for_none_and_some()
+        {
+            var a = Option.None<int>();
+            var b = Option.Some(42);
+            (a != b).Should().BeTrue();
+        }
+
+        [Fact]
+        public void Inequality_operator_returns_true_for_different_values()
+        {
+            var a = Option.Some(42);
+            var b = Option.Some(123);
+            (a != b).Should().BeTrue();
+        }
+
+        [Fact]
+        public void Inequality_operator_returns_false_for_none_and_none()
+        {
+            var a = Option.None<int>();
+            var b = Option.None<int>();
+            (a != b).Should().BeFalse();
+        }
+
+        [Fact]
+        public void Inequality_operator_returns_false_for_same_values()
+        {
+            var a = Option.Some(42);
+            var b = Option.Some(42);
+            (a != b).Should().BeFalse();
+        }
+
+        [Fact]
         public void GetHashCode_returns_zero_for_none()
         {
             var option = Option.None<int>();

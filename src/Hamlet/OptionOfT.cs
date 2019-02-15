@@ -67,6 +67,10 @@ namespace Hamlet
         /// <param name="value">The <see cref="NoneOption"/> to convert.</param>
         public static implicit operator Option<T>(NoneOption value) => default;
 
+        public static bool operator ==(Option<T> a, Option<T> b) => a.Equals(b);
+
+        public static bool operator !=(Option<T> a, Option<T> b) => !(a == b);
+
         /// <summary>
         /// Determines whether the specified <see cref="Option{T}"/> is equal to the current option.
         /// </summary>
