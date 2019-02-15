@@ -67,16 +67,58 @@ namespace Hamlet
         /// <param name="value">The <see cref="NoneOption"/> to convert.</param>
         public static implicit operator Option<T>(NoneOption value) => default;
 
+        /// <summary>
+        /// Determines wether two specified options are equal.
+        /// </summary>
+        /// <param name="a">The first option to compare.</param>
+        /// <param name="b">The second option to compare.</param>
+        /// <returns>true if the options are equal, false otherwise.</returns>
+        /// <remarks>The equality semantics are the same as for <see cref="Equals(Option{T})"/></remarks>
         public static bool operator ==(Option<T> a, Option<T> b) => a.Equals(b);
 
+        /// <summary>
+        /// Determines wether two specified options are different.
+        /// </summary>
+        /// <param name="a">The first option to compare.</param>
+        /// <param name="b">The second option to compare.</param>
+        /// <returns>true if the options are different, false otherwise.</returns>
+        /// <remarks>The equality semantics are the same as for <see cref="Equals(Option{T})"/></remarks>
         public static bool operator !=(Option<T> a, Option<T> b) => !(a == b);
 
+        /// <summary>
+        /// Determines wether the specified option and value are equal.
+        /// </summary>
+        /// <param name="option">The option to compare.</param>
+        /// <param name="value">The value to compare.</param>
+        /// <returns>true if <c>option</c> has a value equal to <c>value</c>, false otherwise.</returns>
+        /// <remarks>Always returns false if the option is <c>None</c>.</remarks>
         public static bool operator ==(Option<T> option, T value) => option.Equals(value);
 
+        /// <summary>
+        /// Determines wether the specified option and value are different.
+        /// </summary>
+        /// <param name="option">The option to compare.</param>
+        /// <param name="value">The value to compare.</param>
+        /// <returns>true if <c>option</c> is <c>None</c> or has a value different from <c>value</c>, false otherwise.</returns>
+        /// <remarks>Always returns true if the option is <c>None</c>.</remarks>
         public static bool operator !=(Option<T> option, T value) => !(option == value);
 
+        /// <summary>
+        /// Determines wether the specified value and option are equal.
+        /// </summary>
+        /// <param name="value">The value to compare.</param>
+        /// <param name="option">The option to compare.</param>
+        /// <returns>true if <c>option</c> has a value equal to <c>value</c>, false otherwise.</returns>
+        /// <remarks>Always returns false if the option is <c>None</c>.</remarks>
         public static bool operator ==(T value, Option<T> option) => option == value;
 
+        /// <summary>
+        /// Determines wether the specified value and option are different.
+        /// </summary>
+        /// <param name="value">The value to compare.</param>
+        /// <param name="option">The option to compare.</param>
+        /// <returns>true if <c>option</c> is <c>None</c> or has a value different from <c>value</c>, false otherwise.</returns>
+        /// <remarks>Always returns true if the option is <c>None</c>.</remarks>
         public static bool operator !=(T value, Option<T> option) => option != value;
 
         /// <summary>
@@ -107,6 +149,11 @@ namespace Hamlet
             }
         }
 
+        /// <summary>
+        /// Determines whether the specified value is equal to the current option.
+        /// </summary>
+        /// <param name="value">The value to compare with the current option.</param>
+        /// <returns>True if the current option is <c>Some</c> and has a value equal to <c>value</c>, false otherwise.</returns>
         public bool Equals(T value)
         {
             return IsSome && EqualityComparer<T>.Default.Equals(value, Value);
