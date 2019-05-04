@@ -1,6 +1,10 @@
 # Hamlet
 
-> ìTo be, or not to be, that is the questionî
+[![NuGet version](https://img.shields.io/nuget/v/Hamlet.svg)](https://www.nuget.org/packages/Hamlet)
+[![AppVeyor build](https://img.shields.io/appveyor/ci/thomaslevesque/hamlet.svg)](https://ci.appveyor.com/project/thomaslevesque/hamlet)
+[![AppVeyor tests](https://img.shields.io/appveyor/tests/thomaslevesque/hamlet.svg)](https://ci.appveyor.com/project/thomaslevesque/hamlet/build/tests)
+
+> ‚ÄúTo be, or not to be, that is the question‚Äù
 
 Hamlet is a small .NET library that provides a simple option type, as well as some extension methods
 for use with Linq.
