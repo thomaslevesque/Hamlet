@@ -1,8 +1,8 @@
 # Hamlet
 
-[![NuGet version](https://img.shields.io/nuget/v/Hamlet.svg)](https://www.nuget.org/packages/Hamlet)
-[![AppVeyor build](https://img.shields.io/appveyor/ci/thomaslevesque/hamlet.svg)](https://ci.appveyor.com/project/thomaslevesque/hamlet)
-[![AppVeyor tests](https://img.shields.io/appveyor/tests/thomaslevesque/hamlet.svg)](https://ci.appveyor.com/project/thomaslevesque/hamlet/build/tests)
+[![NuGet version](https://img.shields.io/nuget/v/Hamlet.svg?logo=nuget)](https://www.nuget.org/packages/Hamlet)
+[![AppVeyor build](https://img.shields.io/appveyor/ci/thomaslevesque/hamlet.svg?logo=appveyor)](https://ci.appveyor.com/project/thomaslevesque/hamlet)
+[![AppVeyor tests](https://img.shields.io/appveyor/tests/thomaslevesque/hamlet.svg?logo=appveyor)](https://ci.appveyor.com/project/thomaslevesque/hamlet/build/tests)
 
 > “To be, or not to be, that is the question”
 
