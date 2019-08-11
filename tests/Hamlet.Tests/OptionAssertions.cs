@@ -13,6 +13,7 @@ namespace Hamlet.Tests
 
         public Option<T> Subject { get; }
 
+        [CustomAssertion]
         public AndConstraint<OptionAssertions<T>> BeNone(string because = "", params object[] becauseArgs)
         {
             Execute.Assertion
@@ -22,6 +23,7 @@ namespace Hamlet.Tests
             return new AndConstraint<OptionAssertions<T>>(this);
         }
 
+        [CustomAssertion]
         public AndConstraint<OptionAssertions<T>> BeSome(T value, string because = "", params object[] becauseArgs)
         {
             Execute.Assertion
@@ -31,6 +33,7 @@ namespace Hamlet.Tests
             return new AndConstraint<OptionAssertions<T>>(this);
         }
 
+        [CustomAssertion]
         public AndConstraint<OptionAssertions<T>> BeSome(string because = "", params object[] becauseArgs)
         {
             Execute.Assertion

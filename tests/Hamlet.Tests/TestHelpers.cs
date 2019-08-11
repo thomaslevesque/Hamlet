@@ -20,8 +20,6 @@ namespace Hamlet.Tests
             var paramTypes = realCall.Method.GetParameters()
                 .ToDictionary(p => p.Name, p => p.ParameterType);
 
-
-
             foreach (var paramName in paramNames)
             {
                 var args = realArgs.ToArray();
@@ -31,7 +29,7 @@ namespace Hamlet.Tests
                 var action = lambda.Compile();
 
                 var ex = Record.Exception(action);
-                ex.Should().BeOfType<ArgumentNullException>().Which.ParamName.Should().Be(paramName);
+                ex.Should().BeOfType<ArgumentNullException>($"because {paramName} is null").Which.ParamName.Should().Be(paramName);
             }
         }
     }
