@@ -477,9 +477,47 @@ namespace Hamlet.Tests
         }
 
         [Fact]
-        public void Bind_on_some_returns_projection_result()
+        public void Bind_on_some_returns_binder_result()
         {
             var option = Option.Some(41).Bind(x => Option.Some(x + 1));
+            option.Should().BeSome(42);
+        }
+
+        [Fact]
+        public void BindMap_throws_if_argument_is_null()
+        {
+            var option = Option.Some(42);
+            AssertThrowsWhenArgumentNull(() => option.BindMap(
+                x => Option.Some(x + 1),
+                (x, y) => x + y),
+                "binder",
+                "mapping");
+        }
+
+        [Fact]
+        public void BindMap_returns_none_if_first_is_none()
+        {
+            var option = Option.None<int>().BindMap(
+                x => Option.Some(x + 1),
+                (x, y) => x + y);
+            option.Should().BeNone();
+        }
+
+        [Fact]
+        public void BindMap_returns_none_if_second_is_none()
+        {
+            var option = Option.Some(41).BindMap(
+                x => Option.None<int>(),
+                (x, y) => x + y);
+            option.Should().BeNone();
+        }
+
+        [Fact]
+        public void BindMap_returns_some_if_both_are_some()
+        {
+            var option = Option.Some(20).BindMap(
+                x => Option.Some(x + 2),
+                (x, y) => x + y);
             option.Should().BeSome(42);
         }
 

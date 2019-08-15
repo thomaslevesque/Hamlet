@@ -224,8 +224,8 @@ namespace Hamlet
         /// <summary>
         /// Invokes a function on an optional value that itself yields an option.
         /// </summary>
-        /// <typeparam name="U">The type of the mapping result's value.</typeparam>
-        /// <param name="binder">A function that takes the value of type <c>T</c> from an option and transforms it into an option containing a value of type <c>U</c>.</param>
+        /// <typeparam name="U">The type of the binding result's value.</typeparam>
+        /// <param name="binder">A function that takes the value of type <c>T</c> from the option and transforms it into an option containing a value of type <c>U</c>.</param>
         /// <returns>An option with the result of the binder, if the current option is <c>Some</c>; otherwise, <c>None</c>.</returns>
         public Option<U> Bind<U>(Func<T, Option<U>> binder)
         {
@@ -236,6 +236,25 @@ namespace Hamlet
                 return binder(_value);
 
             return Option.None<U>();
+        }
+
+        /// <summary>
+        /// Invokes a function on an optional value that itself yields an option, then applies a mapping on the original value and the binding's result.
+        /// </summary>
+        /// <typeparam name="U">The type of the binding result's value.</typeparam>
+        /// <typeparam name="V">The type of the mapping result's value.</typeparam>
+        /// <param name="binder">A function that takes the value of type <c>T</c> from the option and transforms it into an option containing a value of type <c>U</c>.</param>
+        /// <param name="mapping">A function that takes the value of type <c>T</c> from the option and the value of type <c>U</c> from the binding's result, and returns a value of type <c>V</c>.</param>
+        /// <returns>An option with the result of the binding and mapping, if the current option and the binding's result are both <c>Some</c>; otherwise, <c>None</c>.</returns>
+        public Option<V> BindMap<U, V>(Func<T, Option<U>> binder, Func<T, U, V> mapping)
+        {
+            if (binder == null)
+                throw new ArgumentNullException(nameof(binder));
+
+            if (mapping == null)
+                throw new ArgumentNullException(nameof(mapping));
+
+            return Bind(x => binder(x).Map(u => mapping(x, u)));
         }
 
         /// <summary>

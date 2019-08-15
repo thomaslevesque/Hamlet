@@ -9,7 +9,7 @@ namespace System.Linq
     public static class LinqOptionExtensions
     {
         /// <summary>
-        /// Filters an option. Same as <see cref="Option{T}.Filter"/>, but usable with the Linq's query syntax.
+        /// Filters an option. Same as <see cref="Option{T}.Filter"/>, but usable with the Linq query syntax.
         /// </summary>
         /// <typeparam name="T">The type of the option's value.</typeparam>
         /// <param name="option">The option on which to apply a filter.</param>
@@ -24,7 +24,7 @@ namespace System.Linq
         }
 
         /// <summary>
-        /// Maps an option. Same as <see cref="Option{T}.Map{U}"/>, but usable with the Linq's query syntax.
+        /// Maps an option. Same as <see cref="Option{T}.Map{U}"/>, but usable with the Linq query syntax.
         /// </summary>
         /// <typeparam name="T">The type of the option's value.</typeparam>
         /// <typeparam name="U">The type of the mapped option's value.</typeparam>
@@ -40,7 +40,7 @@ namespace System.Linq
         }
 
         /// <summary>
-        /// Binds an option. Same as <see cref="Option{T}.Bind{U}"/>, but usable with the Linq's query syntax.
+        /// Binds an option. Same as <see cref="Option{T}.Bind{U}"/>, but usable with the Linq query syntax.
         /// </summary>
         /// <typeparam name="T">The type of the option's value.</typeparam>
         /// <typeparam name="U">The type of the bound option's value.</typeparam>
@@ -56,7 +56,7 @@ namespace System.Linq
         }
 
         /// <summary>
-        /// Binds an option and applies a mapping on the result. Used in Linq's query syntax when there are multiple <c>from</c> clauses.
+        /// Binds an option and applies a mapping on the result. Used in the Linq query syntax when there are multiple <c>from</c> clauses.
         /// </summary>
         /// <typeparam name="T">The type of the option's value.</typeparam>
         /// <typeparam name="U">The type of the bound option's value.</typeparam>
@@ -73,7 +73,7 @@ namespace System.Linq
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
 
-            return option.Bind(x => optionSelector(x).Map(u => resultSelector(x, u)));
+            return option.BindMap(optionSelector, resultSelector);
         }
 
         /// <summary>
