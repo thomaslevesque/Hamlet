@@ -31,6 +31,104 @@ namespace Hamlet
         public static NoneOption None() => default;
 
         /// <summary>
+        /// Evaluates whether the value contained in the option should remain, or be filtered out.
+        /// </summary>
+        /// <typeparam name="T">The type of the option's value.</typeparam>
+        /// <param name="option">The option to filter.</param>
+        /// <param name="predicate">A function that evaluates whether the value contained in the option should remain, or be filtered out.</param>
+        /// <returns>The option, if it is <c>Some</c> and its value matches the predicate; otherwise, <c>None</c>.</returns>
+        public static Option<T> Filter<T>(this Option<T> option, Func<T, bool> predicate)
+        {
+            if (predicate == null)
+                throw new ArgumentNullException(nameof(predicate));
+
+            if (option.TryGetValue(out var value) && predicate(value))
+                return option;
+
+            return None<T>();
+        }
+
+        /// <summary>
+        /// Transforms an option value by using a specified mapping function.
+        /// </summary>
+        /// <typeparam name="T">The type of the option's value.</typeparam>
+        /// <typeparam name="U">The type of the mapping result.</typeparam>
+        /// <param name="option">The option to map.</param>
+        /// <param name="mapping">A function to apply to the option value.</param>
+        /// <returns>A <c>Some</c> option with the mapping result, if the option is <c>Some</c>; otherwise, <c>None</c>.</returns>
+        public static Option<U> Map<T, U>(this Option<T> option, Func<T, U> mapping)
+        {
+            if (mapping == null)
+                throw new ArgumentNullException(nameof(mapping));
+
+            if (option.TryGetValue(out var value))
+                return Some(mapping(value));
+
+            return None<U>();
+        }
+
+        /// <summary>
+        /// Invokes a function on an optional value that itself yields an option.
+        /// </summary>
+        /// <typeparam name="T">The type of the option's value.</typeparam>
+        /// <typeparam name="U">The type of the binding result's value.</typeparam>
+        /// <param name="option">The option to bind.</param>
+        /// <param name="binder">A function that takes the value of type <c>T</c> from the option and transforms it into an option containing a value of type <c>U</c>.</param>
+        /// <returns>An option with the result of the binder, if the option is <c>Some</c>; otherwise, <c>None</c>.</returns>
+        public static Option<U> Bind<T, U>(this Option<T> option, Func<T, Option<U>> binder)
+        {
+            if (binder == null)
+                throw new ArgumentNullException(nameof(binder));
+
+            if (option.TryGetValue(out var value))
+                return binder(value);
+
+            return None<U>();
+        }
+
+        /// <summary>
+        /// Invokes a function on an optional value that itself yields an option, then applies a mapping on the original value and the binding's result.
+        /// </summary>
+        /// <typeparam name="T">The type of the option's value.</typeparam>
+        /// <typeparam name="U">The type of the binding result's value.</typeparam>
+        /// <typeparam name="V">The type of the mapping result's value.</typeparam>
+        /// <param name="option">The option to bind.</param>
+        /// <param name="binder">A function that takes the value of type <c>T</c> from the option and transforms it into an option containing a value of type <c>U</c>.</param>
+        /// <param name="mapping">A function that takes the value of type <c>T</c> from the option and the value of type <c>U</c> from the binding's result, and returns a value of type <c>V</c>.</param>
+        /// <returns>An option with the result of the binding and mapping, if the option and the binding's result are both <c>Some</c>; otherwise, <c>None</c>.</returns>
+        public static Option<V> BindMap<T, U, V>(this Option<T> option, Func<T, Option<U>> binder, Func<T, U, V> mapping)
+        {
+            if (binder == null)
+                throw new ArgumentNullException(nameof(binder));
+
+            if (mapping == null)
+                throw new ArgumentNullException(nameof(mapping));
+
+            return option.Bind(x => binder(x).Map(u => mapping(x, u)));
+        }
+
+        /// <summary>
+        /// Invokes one of the specified functions, depending on whether the option is <c>Some</c> or <c>None</c>.
+        /// </summary>
+        /// <typeparam name="U">The type of the mapping result.</typeparam>
+        /// <typeparam name="T">The type of the option's value.</typeparam>
+        /// <param name="option">The option to match.</param>
+        /// <param name="some">A mapping function invoked on the value if the option is <c>Some</c>.</param>
+        /// <param name="none">A function invoked if the option is <c>None</c>.</param>
+        /// <returns>The result of one of the specified functions, depending on whether the option is <c>Some</c> or <c>None</c>.</returns>
+        public static U Match<T, U>(this Option<T> option, Func<T, U> some, Func<U> none)
+        {
+            if (some == null)
+                throw new ArgumentNullException(nameof(some));
+            if (none == null)
+                throw new ArgumentNullException(nameof(none));
+
+            return option.TryGetValue(out var value)
+                ? some(value)
+                : none();
+        }
+
+        /// <summary>
         /// Converts an <see cref="Option{T}"/> to a <see cref="Nullable{T}"/>, based on whether the option is <c>Some</c> or <c>None</c>.
         /// </summary>
         /// <typeparam name="T">The type of the option's value.</typeparam>
