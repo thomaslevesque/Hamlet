@@ -6,8 +6,8 @@
 
 > “To be, or not to be, that is the question”
 
-Hamlet is a small .NET library that provides a simple option type, as well as some extension methods
-for use with Linq.
+Hamlet is a small .NET library that provides a simple option type, common operations for working with
+options (map, bind, filter...), as well as some extension methods for using Linq syntax on options.
 
 An option type is useful to represent the presence or absence of a value. In C#, `null` is often used
 for that purpose, but it has some issues:
