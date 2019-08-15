@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Hamlet
 {
@@ -55,6 +56,28 @@ namespace Hamlet
             return nullable.HasValue
                 ? Some(nullable.Value)
                 : None<T>();
+        }
+
+        /// <summary>
+        /// Converts the option to an array of length 0 or 1.
+        /// </summary>
+        /// <typeparam name="T">The type of the option's value.</typeparam>
+        /// <param name="option">The option to convert.</param>
+        /// <returns>An array containing the option's value, if the option is <c>Some</c>; otherwise, an empty array.</returns>
+        public static T[] ToArray<T>(this Option<T> option)
+        {
+            return option.Match(value => new[] { value }, Array.Empty<T>);
+        }
+
+        /// <summary>
+        /// Converts the option to an list of length 0 or 1.
+        /// </summary>
+        /// <typeparam name="T">The type of the option's value.</typeparam>
+        /// <param name="option">The option to convert.</param>
+        /// <returns>A list containing the option's value, if the option is <c>Some</c>; otherwise, an empty list.</returns>
+        public static List<T> ToList<T>(this Option<T> option)
+        {
+            return option.Match(value => new List<T> { value }, () => new List<T>());
         }
     }
 }
