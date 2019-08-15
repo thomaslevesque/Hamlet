@@ -177,5 +177,20 @@ namespace Hamlet
         {
             return option.Match(value => new List<T> { value }, () => new List<T>());
         }
+
+        /// <summary>
+        /// Executes an action of the option's value, if it exists.
+        /// </summary>
+        /// <typeparam name="T">The type of the option's value.</typeparam>
+        /// <param name="option">The option on which to execute an action.</param>
+        /// <param name="action">The action to execute on the option's value.</param>
+        public static void Do<T>(this Option<T> option, Action<T> action)
+        {
+            if (action == null)
+                throw new ArgumentNullException(nameof(action));
+
+            if (option.TryGetValue(out var value))
+                action(value);
+        }
     }
 }

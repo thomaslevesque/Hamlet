@@ -1,4 +1,6 @@
-﻿using FluentAssertions;
+﻿using FakeItEasy;
+using FluentAssertions;
+using System;
 using Xunit;
 using static Hamlet.Tests.TestHelpers;
 
@@ -189,6 +191,31 @@ namespace Hamlet.Tests
         {
             var option = Option.Some(42);
             option.ToList().Should().Equal(42);
+        }
+
+        [Fact]
+        public void Do_throws_if_argument_is_null()
+        {
+            var option = Option.Some(42);
+            AssertThrowsWhenArgumentNull(() => option.Do(value => value.ToString()), "action");
+        }
+
+        [Fact]
+        public void Do_does_nothing_for_none()
+        {
+            var option = Option.None<int>();
+            var action = A.Fake<Action<int>>();
+            option.Do(action);
+            A.CallTo(action).MustNotHaveHappened();
+        }
+
+        [Fact]
+        public void Do_calls_action_for_some()
+        {
+            var option = Option.Some(42);
+            var action = A.Fake<Action<int>>();
+            option.Do(action);
+            A.CallTo(() => action(42)).MustHaveHappenedOnceExactly();
         }
     }
 }
