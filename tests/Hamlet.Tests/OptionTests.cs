@@ -152,17 +152,31 @@ namespace Hamlet.Tests
         }
 
         [Fact]
-        public void ToOption_returns_none_for_null()
+        public void SomeIfNotNull_nullable_returns_none_for_null()
         {
             int? nullable = null;
-            nullable.ToOption().Should().BeNone();
+            nullable.SomeIfNotNull().Should().BeNone();
         }
 
         [Fact]
-        public void ToOption_returns_some_for_non_null()
+        public void SomeIfNotNull_nullable_returns_some_for_non_null()
         {
             int? nullable = 42;
-            nullable.ToOption().Should().BeSome(42);
+            nullable.SomeIfNotNull().Should().BeSome(42);
+        }
+
+        [Fact]
+        public void SomeIfNotNull_reftype_returns_none_for_null()
+        {
+            string value = null;
+            value.SomeIfNotNull().Should().BeNone();
+        }
+
+        [Fact]
+        public void SomeIfNotNull_reftype_returns_some_for_non_null()
+        {
+            string value = "hello";
+            value.SomeIfNotNull().Should().BeSome("hello");
         }
 
         [Fact]

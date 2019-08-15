@@ -145,14 +145,28 @@ namespace Hamlet
         /// <summary>
         /// Converts a <see cref="Nullable{T}"/> to an <see cref="Option{T}"/>, based on whether the nullable has a value.
         /// </summary>
-        /// <typeparam name="T">The type of the option's value.</typeparam>
-        /// <param name="nullable">The nullabe to convert.</param>
+        /// <typeparam name="T">The type of the nullable's value.</typeparam>
+        /// <param name="nullable">The nullable to convert.</param>
         /// <returns>A <c>Some</c> <see cref="Option{T}"/> with the nullable's value, if any; otherwise, <c>None</c>.</returns>
-        public static Option<T> ToOption<T>(this T? nullable)
+        public static Option<T> SomeIfNotNull<T>(this T? nullable)
             where T : struct
         {
             return nullable.HasValue
                 ? Some(nullable.Value)
+                : None<T>();
+        }
+
+        /// <summary>
+        /// Converts a <c>T</c> to an <see cref="Option{T}"/>, based on whether it's null or not.
+        /// </summary>
+        /// <typeparam name="T">The type of the value.</typeparam>
+        /// <param name="value">The value to convert.</param>
+        /// <returns>A <c>Some</c> <see cref="Option{T}"/> with the value, if it's not null; otherwise, <c>None</c>.</returns>
+        public static Option<T> SomeIfNotNull<T>(this T value)
+            where T : class
+        {
+            return value != null
+                ? Some(value)
                 : None<T>();
         }
 
