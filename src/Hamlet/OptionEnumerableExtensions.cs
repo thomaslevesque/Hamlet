@@ -128,5 +128,55 @@ namespace Hamlet
 
             return source.Select(chooser).FirstOrDefault(o => o.IsSome);
         }
+
+        /// <summary>
+        /// Returns the first element for which the given predicate returns true, or <c>None</c> if no such element exists.
+        /// </summary>
+        /// <typeparam name="T">The type of the list's elements.</typeparam>
+        /// <param name="source">The input list.</param>
+        /// <param name="predicate">A function that evaluates to a Boolean when given an item in the sequence.</param>
+        /// <returns>A <c>Some</c> option with the first element for which the predicate returns true, if any; otherwise, <c>None</c>.</returns>
+        public static Option<T> TryFind<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            if (predicate == null)
+                throw new ArgumentNullException(nameof(predicate));
+
+            foreach (var item in source)
+            {
+                if (predicate(item))
+                    return Option.Some(item);
+            }
+
+            return Option.None<T>();
+        }
+
+        /// <summary>
+        /// Returns the index of the first element for which the given predicate returns true, or <c>None</c> if no such element exists.
+        /// </summary>
+        /// <typeparam name="T">The type of the list's elements.</typeparam>
+        /// <param name="source">The input list.</param>
+        /// <param name="predicate">A function that evaluates to a Boolean when given an item in the sequence.</param>
+        /// <returns>A <c>Some</c> option with the index of the first element for which the predicate returns true, if any; otherwise, <c>None</c>.</returns>
+        public static Option<int> TryFindIndex<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            if (predicate == null)
+                throw new ArgumentNullException(nameof(predicate));
+
+            int index = 0;
+            foreach (var item in source)
+            {
+                if (predicate(item))
+                    return Option.Some(index);
+                index++;
+            }
+
+            return Option.None<int>();
+        }
     }
 }

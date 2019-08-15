@@ -199,5 +199,47 @@ namespace Hamlet.Tests
             var result = options.TryPick();
             result.Should().BeSome(2);
         }
+
+        [Fact]
+        public void TryFind_throws_if_argument_is_null()
+        {
+            var source = Enumerable.Empty<int>();
+            AssertThrowsWhenArgumentNull(() => source.TryFind(x => x % 2 == 0), "source", "predicate");
+        }
+
+        [Fact]
+        public void TryFind_returns_none_if_no_element_matches_predicate()
+        {
+            var source = new[] { 1, 3, 5 };
+            source.TryFind(x => x % 2 == 0).Should().BeNone();
+        }
+
+        [Fact]
+        public void TryFind_returns_some_if_element_matches_predicate()
+        {
+            var source = new[] { 1, 3, 4, 6 };
+            source.TryFind(x => x % 2 == 0).Should().BeSome(4);
+        }
+
+        [Fact]
+        public void TryFindIndex_throws_if_argument_is_null()
+        {
+            var source = Enumerable.Empty<int>();
+            AssertThrowsWhenArgumentNull(() => source.TryFindIndex(x => x % 2 == 0), "source", "predicate");
+        }
+
+        [Fact]
+        public void TryFindIndex_returns_none_if_no_element_matches_predicate()
+        {
+            var source = new[] { 1, 3, 5 };
+            source.TryFindIndex(x => x % 2 == 0).Should().BeNone();
+        }
+
+        [Fact]
+        public void TryFindIndex_returns_some_if_element_matches_predicate()
+        {
+            var source = new[] { 1, 3, 4, 6 };
+            source.TryFindIndex(x => x % 2 == 0).Should().BeSome(2);
+        }
     }
 }
