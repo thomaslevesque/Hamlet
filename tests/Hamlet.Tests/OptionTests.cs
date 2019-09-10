@@ -152,6 +152,48 @@ namespace Hamlet.Tests
         }
 
         [Fact]
+        public void GetValueOrDefault_returns_value_for_some()
+        {
+            var option = Option.Some(42);
+            option.GetValueOrDefault().Should().Be(42);
+        }
+
+        [Fact]
+        public void GetValueOrDefault_returns_default_for_none()
+        {
+            var option = Option.None<int>();
+            option.GetValueOrDefault().Should().Be(0);
+        }
+
+        [Fact]
+        public void GetValueOrNull_returns_value_for_some()
+        {
+            var option = Option.Some("hello");
+            option.GetValueOrNull().Should().Be("hello");
+        }
+
+        [Fact]
+        public void GetValueOrNull_returns_null_for_none()
+        {
+            var option = Option.None<string>();
+            option.GetValueOrNull().Should().BeNull();
+        }
+
+        [Fact]
+        public void GetValueOr_returns_value_for_some()
+        {
+            var option = Option.Some(42);
+            option.GetValueOr(3).Should().Be(42);
+        }
+
+        [Fact]
+        public void GetValueOr_returns_default_for_none()
+        {
+            var option = Option.None<int>();
+            option.GetValueOr(3).Should().Be(3);
+        }
+
+        [Fact]
         public void SomeIfNotNull_nullable_returns_none_for_null()
         {
             int? nullable = null;

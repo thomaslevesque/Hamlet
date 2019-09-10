@@ -51,27 +51,6 @@ namespace Hamlet.Tests
         }
 
         [Fact]
-        public void GetValueOrDefault_returns_value_for_some()
-        {
-            var option = Option.Some(42);
-            option.GetValueOrDefault().Should().Be(42);
-        }
-
-        [Fact]
-        public void GetValueOrDefault_returns_default_for_none()
-        {
-            var option = Option.None<int>();
-            option.GetValueOrDefault().Should().Be(0);
-        }
-
-        [Fact]
-        public void GetValueOrDefault_returns_specified_default_for_none()
-        {
-            var option = Option.None<int>();
-            option.GetValueOrDefault(3).Should().Be(3);
-        }
-
-        [Fact]
         public void TryGetValue_returns_true_and_sets_value_for_some()
         {
             var option = Option.Some(42);

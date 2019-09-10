@@ -46,18 +46,15 @@ Option<int> option = ...
 // Explicit check
 if (option.IsSome)
 {
-    return option.Value;
+    int value = option.Value;
+	...
 }
-else
-{
-    return -1;
-}
-
-// Using GetValueOrDefault
-return option.GetValueOrDefault(-1);
 
 // Using TryGetValue
-return option.TryGetValue(out var value) ? value : -1;
+if (option.TryGetValue(out var value))
+{
+    ...
+}
 ```
 
 ### Usage with Linq

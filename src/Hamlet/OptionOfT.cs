@@ -38,13 +38,6 @@ namespace Hamlet
         public bool IsNone => !IsSome;
 
         /// <summary>
-        /// Attempts to get the option's value, if any, or a default value if the option has no value.
-        /// </summary>
-        /// <param name="defaultValue">The default value to return when the option has no value.</param>
-        /// <returns>The option's value, if any, <c>defaultValue</c> otherwise.</returns>
-        public T GetValueOrDefault(T defaultValue = default) => IsSome ? _value : defaultValue;
-
-        /// <summary>
         /// Attempts to get the option's value, if any.
         /// </summary>
         /// <param name="value">This output parameter will receive the option's value, if any.</param>
