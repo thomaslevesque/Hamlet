@@ -4,6 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
+    <!-- For previous SDK versions -->
+    <NullableContextOptions>enable</NullableContextOptions>
     <MinVerVerbosity>quiet</MinVerVerbosity>
     <AssemblyOriginatorKeyFile>Hamlet.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
