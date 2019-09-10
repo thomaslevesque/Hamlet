@@ -162,7 +162,7 @@ namespace Hamlet
         /// <typeparam name="T">The type of the value.</typeparam>
         /// <param name="value">The value to convert.</param>
         /// <returns>A <c>Some</c> <see cref="Option{T}"/> with the value, if it's not null; otherwise, <c>None</c>.</returns>
-        public static Option<T> SomeIfNotNull<T>(this T value)
+        public static Option<T> SomeIfNotNull<T>(this T? value)
             where T : class
         {
             return value != null

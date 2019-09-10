@@ -168,7 +168,7 @@ namespace Hamlet.Tests
         [Fact]
         public void SomeIfNotNull_reftype_returns_none_for_null()
         {
-            string value = null;
+            string? value = null;
             value.SomeIfNotNull().Should().BeNone();
         }
 
