@@ -8,7 +8,7 @@ namespace System.Linq
     public static class LinqOptionExtensions
     {
         /// <summary>
-        /// Filters an option. Same as <see cref="Option{T}.Filter"/>, but usable with the Linq query syntax.
+        /// Filters an option. Same as <see cref="Option.Filter{T}"/>, but usable with the Linq query syntax.
         /// </summary>
         /// <typeparam name="T">The type of the option's value.</typeparam>
         /// <param name="option">The option on which to apply a filter.</param>
@@ -23,7 +23,7 @@ namespace System.Linq
         }
 
         /// <summary>
-        /// Maps an option. Same as <see cref="Option{T}.Map{U}"/>, but usable with the Linq query syntax.
+        /// Maps an option. Same as <see cref="Option.Map{T, U}"/>, but usable with the Linq query syntax.
         /// </summary>
         /// <typeparam name="T">The type of the option's value.</typeparam>
         /// <typeparam name="U">The type of the mapped option's value.</typeparam>
@@ -39,7 +39,7 @@ namespace System.Linq
         }
 
         /// <summary>
-        /// Binds an option. Same as <see cref="Option{T}.Bind{U}"/>, but usable with the Linq query syntax.
+        /// Binds an option. Same as <see cref="Option.Bind{T, U}"/>, but usable with the Linq query syntax.
         /// </summary>
         /// <typeparam name="T">The type of the option's value.</typeparam>
         /// <typeparam name="U">The type of the bound option's value.</typeparam>
