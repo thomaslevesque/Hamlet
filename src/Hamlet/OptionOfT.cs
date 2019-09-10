@@ -9,6 +9,8 @@ namespace Hamlet
     /// <typeparam name="T">The type of value that can be contained in the option.</typeparam>
     public struct Option<T> : IEquatable<Option<T>>, IEquatable<T>
     {
+        private readonly T _value;
+
         /// <summary>
         /// Creates a new instance of <see cref="Option{T}"/> that contains the specified value.
         /// </summary>
@@ -18,8 +20,6 @@ namespace Hamlet
             _value = value;
             IsSome = true;
         }
-
-        private readonly T _value;
 
         /// <summary>
         /// Returns the option's value, if any; otherwise, throws an <see cref="InvalidOperationException"/>.
@@ -65,7 +65,9 @@ namespace Hamlet
         /// Implicitly converts a <see cref="NoneOption"/> into a <c>None</c> option.
         /// </summary>
         /// <param name="value">The <see cref="NoneOption"/> to convert.</param>
+#pragma warning disable IDE0060 // Remove unused parameter
         public static implicit operator Option<T>(NoneOption value) => default;
+#pragma warning restore IDE0060 // Remove unused parameter
 
         /// <summary>
         /// Determines wether two specified options are equal.
@@ -180,7 +182,7 @@ namespace Hamlet
                 ? $"Some {ValueAsString(_value)}"
                 : "None";
 
-            string ValueAsString(T value)
+            static string ValueAsString(T value)
             {
                 if (value == null) return "null";
                 if (value is string s) return $"\"{s.Replace("\"", "\\\"")}\"";
