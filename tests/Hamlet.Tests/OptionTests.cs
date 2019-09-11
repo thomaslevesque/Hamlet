@@ -152,45 +152,45 @@ namespace Hamlet.Tests
         }
 
         [Fact]
-        public void GetValueOrDefault_returns_value_for_some()
+        public void ValueOrDefault_returns_value_for_some()
         {
             var option = Option.Some(42);
-            option.GetValueOrDefault().Should().Be(42);
+            option.ValueOrDefault().Should().Be(42);
         }
 
         [Fact]
-        public void GetValueOrDefault_returns_default_for_none()
+        public void ValueOrDefault_returns_default_for_none()
         {
             var option = Option.None<int>();
-            option.GetValueOrDefault().Should().Be(0);
+            option.ValueOrDefault().Should().Be(0);
         }
 
         [Fact]
-        public void GetValueOrNull_returns_value_for_some()
+        public void ValueOrNull_returns_value_for_some()
         {
             var option = Option.Some("hello");
-            option.GetValueOrNull().Should().Be("hello");
+            option.ValueOrNull().Should().Be("hello");
         }
 
         [Fact]
-        public void GetValueOrNull_returns_null_for_none()
+        public void ValueOrNull_returns_null_for_none()
         {
             var option = Option.None<string>();
-            option.GetValueOrNull().Should().BeNull();
+            option.ValueOrNull().Should().BeNull();
         }
 
         [Fact]
-        public void GetValueOr_returns_value_for_some()
+        public void ValueOr_returns_value_for_some()
         {
             var option = Option.Some(42);
-            option.GetValueOr(3).Should().Be(42);
+            option.ValueOr(3).Should().Be(42);
         }
 
         [Fact]
-        public void GetValueOr_returns_default_for_none()
+        public void ValueOr_returns_default_for_none()
         {
             var option = Option.None<int>();
-            option.GetValueOr(3).Should().Be(3);
+            option.ValueOr(3).Should().Be(3);
         }
 
         [Fact]
