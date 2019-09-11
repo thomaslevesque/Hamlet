@@ -148,8 +148,8 @@ namespace Hamlet
         /// <typeparam name="T">The type of the option's value.</typeparam>
         /// <param name="option">The option to get the value from.</param>
         /// <returns>The option's value if it's <c>Some</c>, or <c>null</c> if it's <c>None</c>.</returns>
-        public static T? ValueOrNull<T>(this Option<T> option)
-            where T : class
+        public static T ValueOrNull<T>(this Option<T> option)
+            where T : class?
         {
             return option.IsSome
                 ? option.Value
