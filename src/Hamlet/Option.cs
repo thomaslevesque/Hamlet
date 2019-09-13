@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Hamlet
 {
@@ -140,6 +141,49 @@ namespace Hamlet
             return option.IsSome
                 ? option.Value
                 : default(T?);
+        }
+
+        /// <summary>
+        /// Returns the value of an <see cref="Option{T}"/> if the option is <c>Some</c>, or <c>null</c> if it's <c>None</c>.
+        /// </summary>
+        /// <typeparam name="T">The type of the option's value.</typeparam>
+        /// <param name="option">The option to get the value from.</param>
+        /// <returns>The option's value if it's <c>Some</c>, or <c>null</c> if it's <c>None</c>.</returns>
+        [return: MaybeNull]
+        public static T ValueOrNull<T>(this Option<T> option)
+            where T : class?
+        {
+            return option.IsSome
+                ? option.Value
+                : null;
+        }
+
+        /// <summary>
+        /// Returns the value of an <see cref="Option{T}"/> if the option is <c>Some</c>, or <c>default(T)</c> if it's <c>None</c>.
+        /// </summary>
+        /// <typeparam name="T">The type of the option's value.</typeparam>
+        /// <param name="option">The option to get the value from.</param>
+        /// <returns>The option's value if it's <c>Some</c>, or <c>default(T)</c> if it's <c>None</c>.</returns>
+        public static T ValueOrDefault<T>(this Option<T> option)
+            where T : struct
+        {
+            return option.IsSome
+                ? option.Value
+                : default;
+        }
+
+        /// <summary>
+        /// Returns the value of an <see cref="Option{T}"/> if the option is <c>Some</c>, or <c>defaultValue</c> if it's <c>None</c>.
+        /// </summary>
+        /// <typeparam name="T">The type of the option's value.</typeparam>
+        /// <param name="option">The option to get the value from.</param>
+        /// <param name="defaultValue">The value to return if the option is <c>None</c>.</param>
+        /// <returns>The option's value if it's <c>Some</c>, or <c>defaultValue</c> if it's <c>None</c>.</returns>
+        public static T ValueOr<T>(this Option<T> option, T defaultValue)
+        {
+            return option.IsSome
+                ? option.Value
+                : defaultValue;
         }
 
         /// <summary>
