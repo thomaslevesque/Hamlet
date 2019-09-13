@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+#if !FEATURE_ARRAY_EMPTY
+using Array = Hamlet.Compatibility.ArrayEx;
+#endif
 
 namespace Hamlet
 {
