@@ -22,6 +22,7 @@
     <PackageReleaseNotes>https://github.com/thomaslevesque/Hamlet/releases</PackageReleaseNotes>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <PackageIcon>assets/hamlet.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,5 +33,9 @@
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <DefineConstants>$(DefineConstants);FEATURE_ARRAY_EMPTY</DefineConstants>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../../assets/hamlet.png" Pack="True" PackagePath="assets/hamlet.png" />
+  </ItemGroup>
 
 </Project>

@@ -1,5 +1,7 @@
 # Hamlet
 
+![Logo](assets/hamlet.png)
+
 [![NuGet version](https://img.shields.io/nuget/v/Hamlet.svg?logo=nuget)](https://www.nuget.org/packages/Hamlet)
 [![AppVeyor build](https://img.shields.io/appveyor/ci/thomaslevesque/hamlet.svg?logo=appveyor)](https://ci.appveyor.com/project/thomaslevesque/hamlet)
 [![AppVeyor tests](https://img.shields.io/appveyor/tests/thomaslevesque/hamlet.svg?logo=appveyor)](https://ci.appveyor.com/project/thomaslevesque/hamlet/build/tests)
@@ -104,3 +106,7 @@ Option<int> result =
     where b > 0
     select a + b;
 ```
+
+## Credits
+
+The package logo is the icon [Hamlet](https://thenounproject.com/term/hamlet/258402/) by Priscilla Alves from the Noun Project, under license [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
