@@ -9,9 +9,7 @@
     <MinVerVerbosity>quiet</MinVerVerbosity>
     <AssemblyOriginatorKeyFile>Hamlet.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -20,7 +18,10 @@
     <Description>“To be, or not to be, that is the question”. A simple Option type for .NET</Description>
     <PackageProjectUrl>https://github.com/thomaslevesque/Hamlet</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>option;maybe</PackageTags>
     <PackageReleaseNotes>https://github.com/thomaslevesque/Hamlet/releases</PackageReleaseNotes>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
 
   <ItemGroup>
