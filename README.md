@@ -92,7 +92,7 @@ Option<int> result =
 ```
 
 Values from multiple options can also be combined. In the following example, `result` will be
-`Some(optA.Value + optB.Value)` if both `optA` and `optB` hava a value, and `optB`'s value is greater than 0:
+`Some(optA.Value + optB.Value)` if both `optA` and `optB` have a value, and `optB`'s value is greater than 0:
 
 ```csharp
 using Hamlet;
